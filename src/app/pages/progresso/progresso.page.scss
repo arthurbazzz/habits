@@ -1,0 +1,20 @@
+.stats { display: flex; gap: 12px; }
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px; border-radius: 12px; }
+.stat span { font: 400 11px var(--hb-font); color: var(--hb-muted); }
+.stat strong { font: 800 14px var(--hb-font); }
+.orange { color: var(--hb-orange); }
+.green { color: var(--hb-success); }
+
+.chart-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 20px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; }
+.chart-header h2 { margin: 0; font: 800 15px var(--hb-font); color: var(--hb-ink); }
+.chart-header span { font: 700 12px var(--hb-font); color: var(--hb-primary); }
+.bars { display: flex; align-items: flex-end; justify-content: space-between; height: 100px; padding-top: 8px; }
+.bar-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.bar { width: 20px; border-radius: 4px 4px 0 0; background: var(--hb-primary); transition: height .3s; }
+.bar-col span { font: 400 10px var(--hb-font); color: var(--hb-muted); }
+
+.ranking { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; align-items: center; gap: 12px; padding: 12px; text-decoration: none; }
+.row strong { flex: 1; font: 700 15px var(--hb-font); color: var(--hb-ink); }
+.row span { font: 700 13px var(--hb-font); color: var(--hb-orange); }

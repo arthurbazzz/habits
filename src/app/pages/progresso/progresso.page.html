@@ -1,0 +1,33 @@
+<ion-content>
+  <main class="page">
+    <header class="px" style="padding-top: 12px"><h1 class="title-xl">Progresso</h1></header>
+
+    <section class="stats px">
+      <div class="card stat"><span>Sequência</span><strong class="orange">{{ habitoServ.dias(habitoServ.sequenciaAtual()) }} 🔥</strong></div>
+      <div class="card stat"><span>Melhor Seq.</span><strong class="orange">{{ habitoServ.dias(habitoServ.melhorSequenciaGeral()) }} 🏆</strong></div>
+      <div class="card stat"><span>Check-ins</span><strong class="green">{{ habitoServ.totalCheckins() }} ✅</strong></div>
+    </section>
+
+    <section class="card chart-card">
+      <div class="chart-header"><h2>Últimos 7 dias</h2><span>{{ habitoServ.resumoHoje().percentual }}% hoje</span></div>
+      <div class="bars">
+        @for (dia of historico(); track dia.rotulo) {
+          <div class="bar-col"><div class="bar" [style.height.px]="4 + dia.pct * 76"></div><span>{{ dia.rotulo }}</span></div>
+        }
+      </div>
+    </section>
+
+    <section class="px ranking">
+      <h2 class="section-title">Sequências por hábito</h2>
+      @for (habito of ranking(); track habito.id) {
+        <a class="card row" [routerLink]="['/habito', habito.id]">
+          <img class="habit-icon" [src]="habito.icone" alt="" width="40" height="40" />
+          <strong>{{ habito.nome }}</strong>
+          <span>🔥 {{ habitoServ.dias(habitoServ.sequencia(habito)) }}</span>
+        </a>
+      } @empty {
+        <div class="card empty"><strong>Sem dados ainda</strong>Crie hábitos e faça check-ins para ver seu progresso.</div>
+      }
+    </section>
+  </main>
+</ion-content>

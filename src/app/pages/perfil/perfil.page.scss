@@ -1,0 +1,42 @@
+.tools { display: flex; justify-content: space-between; padding-top: 12px; }
+
+.user-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px; border-radius: 24px; }
+.avatar { position: relative; width: 96px; height: 96px; border-radius: 48px; overflow: hidden; }
+.avatar-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.name-level { text-align: center; }
+.name-level h1 { margin: 0 0 4px; font: 900 22px var(--hb-font); color: var(--hb-ink); }
+.name-level p { margin: 0; font: 800 14px var(--hb-font); color: var(--hb-primary); }
+.xp { display: flex; flex-direction: column; gap: 4px; width: 100%; }
+.xp-text { display: flex; justify-content: space-between; font: 400 11px var(--hb-font); color: var(--hb-muted); }
+.xp-text strong { font-weight: 700; color: var(--hb-ink); }
+
+.streak-stats { display: flex; gap: 12px; }
+.box { flex: 1; display: flex; align-items: center; gap: 10px; padding: 14px; }
+.box div { display: flex; flex-direction: column; gap: 2px; }
+.box strong { font: 800 16px var(--hb-font); color: var(--hb-ink); }
+.box small { font: 400 11px var(--hb-font); color: var(--hb-muted); }
+.emoji { font-size: 24px; }
+
+.block { display: flex; flex-direction: column; gap: 12px; }
+.sub { margin: 0; font: 800 16px var(--hb-font); color: var(--hb-ink); }
+
+.highlights { display: flex; gap: 10px; overflow-x: auto; }
+.highlight { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 80px; flex-shrink: 0; padding: 12px; border: 1px solid var(--hb-border); }
+.highlight .emoji { font-size: 20px; }
+.highlight strong { font: 800 12px var(--hb-font); color: var(--hb-ink); }
+.highlight small { font: 400 10px var(--hb-font); color: var(--hb-muted); text-align: center; }
+.highlight.unlocked { background: var(--hb-orange-soft); border-color: var(--hb-orange); }
+
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 68px; padding: 10px; color: var(--hb-orange); }
+.badge small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 700 9px var(--hb-font); color: var(--hb-muted); }
+.badge.locked { color: var(--hb-border); }
+
+.shortcuts { display: flex; flex-direction: column; gap: 8px; }
+.shortcut {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px; border: 0; text-align: left;
+  font: 700 15px var(--hb-font); color: var(--hb-ink); cursor: pointer;
+}
+.shortcut .ic-sm { color: var(--hb-primary); }
+.shortcut .ic-xs { margin-left: auto; color: var(--hb-muted); }
+.shortcut.logout { justify-content: center; color: #dc2626; }

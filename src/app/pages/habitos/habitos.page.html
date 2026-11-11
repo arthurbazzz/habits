@@ -1,0 +1,38 @@
+<ion-content>
+  <main class="page">
+    <header class="px header">
+      <div class="header-row">
+        <h1 class="title-xl">Meus Hábitos</h1>
+        <button class="round-btn" (click)="alternarBusca()" aria-label="Buscar hábito"><span class="ic ic-sm ic-search"></span></button>
+      </div>
+      @if (buscando()) {
+        <ion-searchbar placeholder="Buscar hábito" [ngModel]="busca()" (ngModelChange)="busca.set($event)" [debounce]="0" />
+      }
+      <div class="chip-row scroll">
+        @for (f of filtros; track f) {
+          <button class="chip" [class.active]="filtro() === f" (click)="filtro.set(f)">{{ f }}</button>
+        }
+      </div>
+    </header>
+
+    <section class="px list">
+      @for (habito of lista(); track habito.id) {
+        <article class="card habit">
+          <a class="habit-link" [routerLink]="['/habito', habito.id]">
+            <img class="habit-icon" [src]="habito.icone" alt="" width="48" height="48" />
+            <div class="details">
+              <div class="title-row"><strong>{{ habito.nome }}</strong><span>{{ habito.frequencia }}</span></div>
+              <p class="streak"><span aria-hidden="true">🔥</span> {{ habitoServ.dias(habitoServ.sequencia(habito)) }}</p>
+              <div class="progress-track"><span [style.width.%]="percentual(habito)"></span></div>
+            </div>
+          </a>
+          <button class="action" [class.done]="habitoServ.concluido(habito)" (click)="habitoServ.checkin(habito.id)" [attr.aria-label]="'Check-in em ' + habito.nome">
+            <span class="ic ic-xs ic-check-white"></span>
+          </button>
+        </article>
+      } @empty {
+        <div class="card empty"><strong>Nada por aqui</strong>{{ habitoServ.habitos().length ? 'Nenhum hábito nesse filtro.' : 'Toque no + para criar seu primeiro hábito.' }}</div>
+      }
+    </section>
+  </main>
+</ion-content>

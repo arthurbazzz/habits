@@ -1,0 +1,81 @@
+<ion-content>
+  @if (habito(); as h) {
+    <main class="page">
+      <header class="px head">
+        <button class="round-btn" (click)="nav.back()" aria-label="Voltar"><span class="ic ic-sm ic-chevron-left"></span></button>
+        <button class="round-btn" (click)="opcoes()" aria-label="Mais opções"><span class="ic ic-sm ic-more"></span></button>
+      </header>
+
+      <section class="card hero">
+        <img [src]="h.icone" alt="" width="80" height="80" />
+        <div>
+          <h1>{{ h.nome }}</h1>
+          <p>{{ h.categoria }} · {{ h.frequencia }}</p>
+        </div>
+      </section>
+
+      <section class="card mascot">
+        <img src="assets/img/panda-mascot.png" alt="" width="48" height="48" />
+        <p class="bubble">"{{ mensagem() }}"</p>
+      </section>
+
+      <section class="mini-stats">
+        <div class="card mini"><span>Frequência</span><strong class="blue">{{ h.frequencia }}</strong></div>
+        <div class="card mini"><span>Sequência</span><strong class="orange">{{ habitoServ.dias(habitoServ.sequencia(h)) }} 🔥</strong></div>
+        <div class="card mini"><span>Melhor Seq.</span><strong class="orange">{{ habitoServ.dias(habitoServ.melhorSequencia(h)) }} 🏆</strong></div>
+        <div class="card mini"><span>Total Check-ins</span><strong class="green">{{ habitoServ.totalDias(h) }} ✅</strong></div>
+      </section>
+
+      <section class="card panel">
+        <div class="panel-head"><h2>Esta semana</h2><span>{{ feitosSemana() }}/7 check-ins</span></div>
+        <div class="week">
+          @for (d of semana(); track d.rotulo) {
+            <div class="day"><span>{{ d.rotulo }}</span>
+              <span class="check" [class.done]="d.feito">@if (d.feito) { <span class="ic ic-check-white" style="width: 14px; height: 14px"></span> }</span>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="card panel">
+        <div class="panel-head"><h2>Histórico</h2><a routerLink="/tabs/progresso" class="more">Ver mais &gt;</a></div>
+        <div class="bars">
+          @for (b of historico(); track b.rotulo) {
+            <div class="bar-col"><div class="bar" [style.height.px]="b.altura"></div><span>{{ b.rotulo }}</span></div>
+          }
+        </div>
+      </section>
+
+      <section class="px settings">
+        <div class="card setting">
+          <span class="emoji" aria-hidden="true">💧</span>
+          <div class="setting-text"><strong>Meta diária</strong><span>{{ habitoServ.descricaoMeta(h) }}</span></div>
+          <div class="stepper small">
+            <button (click)="habitoServ.alterarMeta(h.id, -1)" aria-label="Diminuir meta">-</button>
+            <strong>{{ h.meta }}</strong>
+            <button class="plus" (click)="habitoServ.alterarMeta(h.id, 1)" aria-label="Aumentar meta">+</button>
+          </div>
+        </div>
+        <button class="card setting" (click)="editarHorario()">
+          <span class="emoji" aria-hidden="true">🔔</span>
+          <div class="setting-text"><strong>Lembrete</strong><span>{{ h.frequencia === 'Diário' ? 'Todos os dias' : h.frequencia }} às {{ h.horario }}</span></div>
+          <span class="ic ic-sm ic-chevron-right" style="width: 18px; height: 18px; color: var(--hb-muted)"></span>
+        </button>
+      </section>
+    </main>
+  } @else {
+    <div class="empty"><strong>Hábito não encontrado</strong><button class="btn-primary" (click)="nav.navigateRoot('/tabs/habitos')">Voltar</button></div>
+  }
+</ion-content>
+@if (habito(); as h) {
+  <ion-footer class="ion-no-border">
+    @let progresso = habitoServ.progresso(h);
+    <button class="btn-primary cta" (click)="habitoServ.checkin(h.id)">
+      @if (progresso >= h.meta) { Desfazer check-in de hoje }
+      @else {
+        <span class="ic ic-sm ic-check-white"></span>
+        Fazer check-in @if (h.meta > 1) { ({{ progresso }}/{{ h.meta }}) }
+      }
+    </button>
+  </ion-footer>
+}

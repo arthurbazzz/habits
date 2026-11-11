@@ -1,0 +1,62 @@
+<ion-content>
+  <main class="page">
+    <header class="greeting px">
+      <div>
+        <p class="hello">{{ saudacao() }}</p>
+        <p class="name">{{ primeiroNome() }}!</p>
+      </div>
+      <div class="sprite" style="width: 68px; height: 64px; margin: 0">
+        <img src="assets/img/panda-sprite.png" alt="" style="height: 839.34%; left: -379.79%; top: -26%; width: 1181.54%" />
+      </div>
+    </header>
+
+    <section class="card progress-card">
+      <div class="progress-top">
+        <div class="progress-info">
+          <p class="eyebrow">Progresso de Hoje</p>
+          <p class="pct">{{ resumo().percentual }}%</p>
+          <p class="state">{{ resumo().percentual === 100 ? 'Concluído!' : resumo().percentual > 0 ? 'Quase lá!' : 'Vamos começar!' }}</p>
+        </div>
+        <svg class="ring" width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
+          <circle cx="36" cy="36" r="32" fill="none" stroke="var(--hb-primary-soft)" stroke-width="8" />
+          <circle cx="36" cy="36" r="32" fill="none" stroke="var(--hb-primary)" stroke-width="8" stroke-linecap="round"
+            [attr.stroke-dasharray]="circunferencia" [attr.stroke-dashoffset]="offsetAnel()" transform="rotate(-90 36 36)" />
+        </svg>
+      </div>
+      <hr />
+      <div class="counts">
+        <div><strong class="ok">{{ resumo().concluidos }}</strong><span>Concluídos</span></div>
+        <div><strong class="doing">{{ resumo().andamento }}</strong><span>Em andamento</span></div>
+        <div><strong class="todo">{{ resumo().pendentes }}</strong><span>Pendentes</span></div>
+      </div>
+    </section>
+
+    <section class="motivation">
+      <span class="emoji" aria-hidden="true">🔥</span>
+      <p>{{ motivacao() }}</p>
+    </section>
+
+    <section class="today px">
+      <h2 class="section-title">Hábitos de hoje</h2>
+      @for (habito of habitosHoje(); track habito.id) {
+        <article class="card habit-row">
+          <a class="habit-left" [routerLink]="['/habito', habito.id]">
+            <img class="habit-icon" [src]="habito.icone" alt="" width="40" height="40" />
+            <div>
+              <p class="habit-name">{{ habito.nome }}</p>
+              <p class="habit-meta">{{ habitoServ.descricaoMeta(habito) }} · {{ habito.horario }}</p>
+            </div>
+          </a>
+          @let status = habitoServ.status(habito);
+          <button class="check" [class.done]="status === 'concluido'" [class.partial]="status === 'andamento'"
+            (click)="habitoServ.checkin(habito.id)" [attr.aria-label]="'Check-in em ' + habito.nome">
+            @if (status === 'concluido') { <span class="ic ic-xs ic-check-white" style="width: 14px; height: 14px"></span> }
+            @else if (status === 'andamento') { {{ habitoServ.progresso(habito) }}/{{ habito.meta }} }
+          </button>
+        </article>
+      } @empty {
+        <div class="card empty"><strong>Nenhum hábito ainda</strong>Toque no + para criar o primeiro.</div>
+      }
+    </section>
+  </main>
+</ion-content>

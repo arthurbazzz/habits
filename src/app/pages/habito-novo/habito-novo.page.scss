@@ -1,0 +1,26 @@
+.head { display: flex; align-items: center; gap: 12px; padding-block: 12px; }
+.form { display: flex; flex-direction: column; gap: 27px; }
+.group { display: flex; flex-direction: column; gap: 8px; }
+
+.field {
+  display: flex; align-items: center; height: 52px; padding: 0 16px; border: 1px solid var(--hb-border); border-radius: 16px;
+  background: #fff; font: 400 16px var(--hb-font-text); color: var(--hb-ink);
+  --padding-start: 0; --placeholder-color: var(--hb-faint); --placeholder-opacity: 1;
+}
+
+.icon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.icon-option {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 1; max-width: 74px; width: 100%;
+  border: 1px solid var(--hb-border); cursor: pointer; padding: 0;
+}
+.icon-option img { border-radius: 8px; object-fit: cover; }
+.icon-option.selected { border: 2px solid var(--hb-primary); }
+
+.freq { display: flex; gap: 4px; height: 44px; padding: 4px; border: 1px solid var(--hb-border); border-radius: 12px; background: #fff; }
+.freq button { flex: 1; border: 0; border-radius: 8px; background: transparent; font: 700 13px var(--hb-font); color: var(--hb-muted); cursor: pointer; }
+.freq button.active { background: var(--hb-primary-soft); color: var(--hb-primary); }
+
+.meta { gap: 6px; }
+.meta strong { font: 800 16px var(--hb-font); }
+.unit { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 800 16px var(--hb-font); color: var(--hb-ink); }
+.time { width: 100%; font-family: var(--hb-font); font-weight: 800; }

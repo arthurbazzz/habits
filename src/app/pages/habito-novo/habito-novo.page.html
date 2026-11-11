@@ -1,0 +1,65 @@
+<ion-content>
+  <form class="page" (ngSubmit)="criar()">
+    <header class="px head">
+      <button type="button" class="round-btn" (click)="nav.back()" aria-label="Voltar"><span class="ic ic-sm ic-chevron-left"></span></button>
+      <h1 class="title-lg">Novo Hábito</h1>
+    </header>
+
+    <div class="px form">
+      <label class="group">
+        <span class="label">Nome do Hábito</span>
+        <ion-input class="field" name="nome" placeholder="Ex: Meditar pela manhã, Comer salada..." [(ngModel)]="habito.nome" />
+      </label>
+
+      <div class="group">
+        <span class="label">Escolha um Ícone 3D</span>
+        <div class="icon-grid" role="radiogroup" aria-label="Ícone">
+          @for (icone of icones; track icone; let i = $index) {
+            <button type="button" class="card icon-option" [class.selected]="habito.icone === icone" role="radio"
+              [attr.aria-checked]="habito.icone === icone" [attr.aria-label]="'Ícone ' + (i + 1)" (click)="habito.icone = icone">
+              <img [src]="icone" alt="" width="44" height="44" />
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="label">Categoria</span>
+        <div class="chip-row">
+          @for (c of categorias; track c) {
+            <button type="button" class="chip" [class.active]="habito.categoria === c" (click)="habito.categoria = c">{{ c }}</button>
+          }
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="label">Frequência</span>
+        <div class="freq">
+          @for (f of frequencias; track f) {
+            <button type="button" [class.active]="habito.frequencia === f" (click)="habito.frequencia = f">{{ f }}</button>
+          }
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="label">Meta Diária</span>
+        <div class="field meta">
+          <strong>{{ habito.meta }}</strong>
+          <input class="unit" name="unidade" [(ngModel)]="habito.unidade" placeholder="vez" aria-label="Unidade da meta" />
+          <div class="stepper">
+            <button type="button" (click)="alterarMeta(-1)" aria-label="Diminuir meta">-</button>
+            <button type="button" class="plus" (click)="alterarMeta(1)" aria-label="Aumentar meta">+</button>
+          </div>
+        </div>
+      </div>
+
+      <label class="group">
+        <span class="label">Horário</span>
+        <input class="field time" type="time" name="horario" [(ngModel)]="habito.horario" required />
+      </label>
+
+      @if (erro()) { <p class="auth-error" role="alert">{{ erro() }}</p> }
+      <button class="btn-primary" type="submit">Criar Hábito</button>
+    </div>
+  </form>
+</ion-content>

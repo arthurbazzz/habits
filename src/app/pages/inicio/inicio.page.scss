@@ -1,0 +1,29 @@
+.greeting { display: flex; align-items: center; justify-content: space-between; padding-block: 12px; }
+.hello { margin: 0 0 2px; font: 800 24px var(--hb-font); color: var(--hb-ink); }
+.name { margin: 0; font: 900 28px var(--hb-font); color: var(--hb-primary); }
+
+.progress-card { display: flex; flex-direction: column; padding: 20px; border-radius: 24px; }
+.progress-top { display: flex; align-items: center; justify-content: space-between; }
+.progress-info p { margin: 0 0 4px; }
+.eyebrow { font: 600 14px var(--hb-font); color: var(--hb-muted); text-transform: uppercase; }
+.pct { font: 900 32px var(--hb-font); color: var(--hb-ink); }
+.state { font: 600 13px var(--hb-font); color: var(--hb-success); }
+.ring circle { transition: stroke-dashoffset .4s; }
+hr { width: 100%; margin: 0; border: 0; border-top: 1px solid var(--hb-border); }
+.counts { display: flex; justify-content: space-between; }
+.counts div { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.counts strong { font: 800 16px var(--hb-font); }
+.counts span { font: 400 11px var(--hb-font); color: var(--hb-muted); }
+.ok { color: var(--hb-success); }
+.doing { color: var(--hb-primary); }
+.todo { color: var(--hb-faint); }
+
+.motivation { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 16px; background: var(--hb-orange-soft); }
+.motivation .emoji { font-size: 24px; }
+.motivation p { margin: 0; flex: 1; font: 600 13px/1.4 var(--hb-font-text); color: var(--hb-orange); }
+
+.today { display: flex; flex-direction: column; gap: 12px; }
+.habit-row { display: flex; align-items: center; justify-content: space-between; padding: 12px; }
+.habit-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; text-decoration: none; }
+.habit-name { margin: 0 0 2px; font: 700 15px var(--hb-font); color: var(--hb-ink); }
+.habit-meta { margin: 0; font: 400 12px var(--hb-font); color: var(--hb-muted); }

@@ -1,0 +1,21 @@
+.header { display: flex; flex-direction: column; gap: 16px; padding-top: 12px; }
+.header-row { display: flex; align-items: center; justify-content: space-between; }
+ion-searchbar { --border-radius: 16px; --background: #fff; padding: 0; }
+.chip { box-shadow: var(--hb-shadow); }
+
+.list { display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px; }
+.habit { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 20px; }
+.habit-link { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; text-decoration: none; }
+.habit-icon { border-radius: 12px; }
+.details { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.title-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.title-row strong { font: 800 16px var(--hb-font); color: var(--hb-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.title-row span { font: 600 11px var(--hb-font); color: var(--hb-muted); }
+.streak { margin: 0; font: 700 13px var(--hb-font); color: var(--hb-orange); }
+.streak span { font-size: 12px; }
+
+.action {
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 32px; height: 32px; border: 0; border-radius: 16px; background: var(--hb-primary-soft); color: var(--hb-primary); cursor: pointer;
+}
+.action.done { background: var(--hb-success); color: #fff; }

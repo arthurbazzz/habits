@@ -1,0 +1,20 @@
+<ion-content class="auth-page">
+  <div class="auth-bg"></div>
+  <form class="auth-wrap" (ngSubmit)="cadastrar()">
+    <div>
+      <div class="sprite" style="width: 129px; height: 128px">
+        <img src="assets/img/panda-sprite.png" alt="" style="height: 800%; left: -283.74%; top: -29.51%; width: 1190.7%" />
+      </div>
+      <img src="assets/img/logo-habitos.png" alt="Habitos" style="display: block; width: 162px; height: 108px; object-fit: cover; margin: -34px auto 0" />
+    </div>
+    <ion-input class="auth-field" name="nome" placeholder="Digite seu nome" autocomplete="given-name" [(ngModel)]="nome" style="border-radius: 28px" />
+    <ion-input class="auth-field" type="email" name="email" placeholder="Digite seu email" autocomplete="email" [(ngModel)]="email" />
+    <ion-input class="auth-field" type="password" name="senha" placeholder="Digite sua senha" autocomplete="new-password" [(ngModel)]="senha" />
+    @if (erro()) { <p class="auth-error" role="alert">{{ erro() }}</p> }
+    <button class="btn-primary" type="submit" style="border-radius: 15px" [disabled]="enviando()">Cadastrar</button>
+    <button class="btn-google" type="button" [disabled]="enviando()" (click)="entrarComGoogle()">
+      <ion-icon name="logo-google" aria-hidden="true" /> Continuar com Google
+    </button>
+    <a class="auth-link" routerLink="/login">Já tem conta? <strong>Entrar</strong></a>
+  </form>
+</ion-content>

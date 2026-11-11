@@ -1,0 +1,64 @@
+<ion-content>
+  <main class="page">
+    <header class="px tools">
+      <button class="round-btn" (click)="emBreve()" aria-label="Configurações"><span class="ic ic-sm ic-settings"></span></button>
+      <button class="round-btn" (click)="emBreve()" aria-label="Recompensas"><span class="ic ic-sm ic-gift"></span></button>
+    </header>
+
+    <section class="card user-card">
+      <div class="avatar">
+        <img src="assets/img/avatar-bg.png" alt="" class="avatar-bg" />
+        <div class="sprite" style="position: absolute; inset: 0; width: auto; height: auto">
+          <img src="assets/img/panda-sprite.png" alt="" style="height: 839.34%; left: -480.01%; top: -27.34%; width: 1181.54%" />
+        </div>
+      </div>
+      <div class="name-level">
+        <h1>{{ auth.usuario()?.nome }}</h1>
+        <p>Nível {{ nivel() }}</p>
+      </div>
+      <div class="xp">
+        <div class="xp-text"><span>Progresso de XP</span><strong>{{ xpNivel() }} / {{ xpPorNivel }} XP</strong></div>
+        <div class="progress-track" style="height: 8px; border-radius: 4px"><span [style.width.%]="(xpNivel() / xpPorNivel) * 100"></span></div>
+      </div>
+    </section>
+
+    <section class="px streak-stats">
+      <div class="card box"><span class="emoji">🔥</span><div><strong>{{ habitoServ.sequenciaAtual() }}</strong><small>Dias Seguidos</small></div></div>
+      <div class="card box"><span class="emoji">🏆</span><div><strong>{{ habitoServ.melhorSequenciaGeral() }}</strong><small>Melhor Sequência</small></div></div>
+    </section>
+
+    <section class="px block">
+      <h2 class="sub">Streak Highlights</h2>
+      <div class="highlights">
+        @for (d of destaques(); track d.dias) {
+          <div class="card highlight" [class.unlocked]="d.liberado">
+            <span class="emoji">{{ d.emoji }}</span><strong>{{ d.dias }} Dias</strong><small>{{ d.texto }}</small>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="px block">
+      <h2 class="sub">Medalhas Conquistadas</h2>
+      <div class="badges">
+        @for (m of medalhas(); track m.nome) {
+          <div class="card badge" [class.locked]="!m.ganhou">
+            <span class="ic ic-{{ m.icone }}" style="width: 32px; height: 32px"></span><small>{{ m.nome }}</small>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="px block">
+      <h2 class="sub">Configurações</h2>
+      <div class="shortcuts">
+        <button class="card shortcut" (click)="editarPerfil()"><span class="ic ic-sm ic-user-outline"></span>Editar Perfil<span class="ic ic-xs ic-chevron-right"></span></button>
+        <button class="card shortcut" (click)="emBreve()"><span class="ic ic-sm ic-paint-bucket"></span>Temas e Aparência<span class="ic ic-xs ic-chevron-right"></span></button>
+        <button class="card shortcut" (click)="emBreve()"><span class="ic ic-sm ic-bell"></span>Lembretes de Hábitos<span class="ic ic-xs ic-chevron-right"></span></button>
+        <button class="card shortcut" (click)="exportar()"><span class="ic ic-sm ic-download"></span>Exportar Dados<span class="ic ic-xs ic-chevron-right"></span></button>
+        <button class="card shortcut" (click)="emBreve()"><span class="ic ic-sm ic-lock"></span>Privacidade &amp; Segurança<span class="ic ic-xs ic-chevron-right"></span></button>
+        <button class="card shortcut logout" (click)="sair()">Sair da conta</button>
+      </div>
+    </section>
+  </main>
+</ion-content>
